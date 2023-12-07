@@ -1,0 +1,39 @@
+// Breakpoint Values
+
+$xsBreakpoint: 576px;
+$smBreakpoint: 768px;
+$mdBreakpoint: 1024px;
+$lgBreakpoint: 1290px;
+$xlBreakpoint: 1440px;
+
+// Breakpoint Mixins
+
+@mixin xs {
+  @media only screen and (max-width: $xsBreakpoint) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media only screen and (min-width: $smBreakpoint) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media only screen and (min-width: $mdBreakpoint) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media only screen and (min-width: $lgBreakpoint) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media only screen and (min-width: $xlBreakpoint) {
+    @content;
+  }
+}

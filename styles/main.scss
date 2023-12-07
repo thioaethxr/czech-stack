@@ -1,0 +1,15 @@
+@import 'breakpoint';
+
+html {
+  font-size: 56.25%;
+}
+
+@include sm {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+body {
+  font-size: 1.5rem;
+}
