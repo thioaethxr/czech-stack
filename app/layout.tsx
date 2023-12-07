@@ -3,6 +3,8 @@ import { PageFooter } from '@components/blocks/PageFooter';
 
 import type { Metadata } from 'next';
 
+import '@styles/reset.scss';
+
 export const metadata: Metadata = {
   title: 'Czech Stack',
   description: 'Czech Stack',
