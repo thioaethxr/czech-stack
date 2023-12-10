@@ -1,64 +1,29 @@
-'use client';
+import React from 'react';
+import { redirect } from 'next/navigation';
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { RegisterForm } from '@components/blocks/RegisterForm';
 
-import type { FormEvent, ChangeEvent } from 'react';
+import { getUserSession } from '@utils/supabase';
+import { AppRoute } from '@utils/route';
 
-export default function Register() {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
-  const router = useRouter();
+import type { Metadata } from 'next';
 
-  const supabase = createClientComponentClient();
+export const metadata: Metadata = {
+  title: 'Register | Czech Stack',
+  description: 'Czech Stack',
+};
 
-  const handleRegister = async (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitDisabled(true);
-    await supabase.auth.signUp({
-      email,
-      password,
-      options: { emailRedirectTo: `${location.origin}/auth/callback` },
-    });
-    setEmail('');
-    setPassword('');
-    setSubmitDisabled(false);
-    router.refresh();
-  };
+export default async function Register() {
+  const { data } = await getUserSession();
+
+  if (data.session) {
+    redirect(AppRoute.HOME);
+  }
 
   return (
     <React.Fragment>
       <h1>Register</h1>
-      <form onSubmit={handleRegister}>
-        <label htmlFor="email">Email:</label>
-        <br />
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setEmail(e.target.value)
-          }
-          required
-        />
-        <br />
-        <label htmlFor="password">Password:</label>
-        <br />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setPassword(e.target.value)
-          }
-          required
-        />
-        <br />
-        <br />
-        <input type="submit" value="Sign up" disabled={submitDisabled} />
-      </form>
+      <RegisterForm />
     </React.Fragment>
   );
 }

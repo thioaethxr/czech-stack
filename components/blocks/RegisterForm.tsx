@@ -8,7 +8,7 @@ import type { FormEvent, ChangeEvent } from 'react';
 
 import type { AuthInfo } from '@typings/auth';
 
-export const LoginForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
@@ -16,12 +16,21 @@ export const LoginForm: React.FC = () => {
   const [password, setPassword] = useState<string>('');
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
-  const handleLogin = async (authInfo: AuthInfo) => {
-    await supabase.auth.signInWithPassword({
-      email: authInfo.email,
-      password: authInfo.password,
-    });
-    router.refresh();
+  const handleRegister = async (authInfo: AuthInfo) => {
+    try {
+      const res = await supabase.auth.signUp({
+        email: authInfo.email,
+        password: authInfo.password,
+        options: { emailRedirectTo: `${location.origin}/auth/callback` },
+      });
+      if (res.error) {
+        throw res.error;
+      }
+      router.refresh();
+    } catch (err) {
+      console.error(err);
+      alert('Registration failed!');
+    }
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -29,7 +38,7 @@ export const LoginForm: React.FC = () => {
     if (!email || !password) return;
 
     setSubmitDisabled(true);
-    await handleLogin({ email, password });
+    await handleRegister({ email, password });
     setEmail('');
     setPassword('');
     setSubmitDisabled(false);
@@ -62,7 +71,7 @@ export const LoginForm: React.FC = () => {
       />
       <br />
       <br />
-      <input type="submit" value="Sign in" disabled={submitDisabled} />
+      <input type="submit" value="Sign up" disabled={submitDisabled} />
     </form>
   );
 };

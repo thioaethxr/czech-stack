@@ -5,4 +5,5 @@ export enum AppRoute {
   HOME = '/',
   LOGIN = '/login',
   REGISTER = '/register',
+  LEARNING = '/learning',
 }

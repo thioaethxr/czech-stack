@@ -4,8 +4,6 @@ import { cookies } from 'next/headers';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { createServerClient } from '@supabase/ssr';
 
-import type { CookieOptions } from '@supabase/ssr';
-
 /**
  * Creates a Supabase server client for server-side rendering.
  */
@@ -19,12 +17,6 @@ export const createSupabaseServerClient = async () => {
       cookies: {
         get(name: string) {
           return cookieStore.get(name)?.value || '';
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          cookieStore.set({ name, value, ...options });
-        },
-        remove(name: string, options: CookieOptions) {
-          cookieStore.delete({ name, ...options });
         },
       },
     }
