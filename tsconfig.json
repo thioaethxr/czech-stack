@@ -21,6 +21,7 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@utils/*": ["./utils/*"],
+      "@typings/*": ["./typings/*"],
       "@styles/*": ["./styles/*"]
     }
   },
