@@ -1,6 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 
 import { fetchCategories } from '@data/category';
+
+import { AppRoute } from '@utils/route';
 
 import type { Metadata } from 'next';
 
@@ -21,7 +24,7 @@ export default async function Learning() {
         ? categories.map((category) => (
             <React.Fragment key={category.id}>
               <h2>{category.name}</h2>
-              <button>View</button>
+              <Link href={`${AppRoute.LEARNING}/${category.slug}`}>Link</Link>
             </React.Fragment>
           ))
         : null}

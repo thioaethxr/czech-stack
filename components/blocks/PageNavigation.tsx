@@ -1,11 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { Icon } from '@components/elements/Icon';
+
 import { getUserSession } from '@utils/supabase';
 import { AppRoute } from '@utils/route';
 
 export const PageNavigation: React.FC = async () => {
   const { data } = await getUserSession();
+  const displayName = data.session?.user.email?.split('@')[0] || '';
   const isLoggedIn = !!data.session;
 
   return (
@@ -14,6 +17,9 @@ export const PageNavigation: React.FC = async () => {
       <ul>
         <li>
           <Link href={AppRoute.HOME}>Home</Link>
+        </li>
+        <li>
+          <Link href={AppRoute.ABOUT}>About</Link>
         </li>
         <li>
           <Link href={AppRoute.LEARNING}>Learning</Link>
@@ -29,6 +35,10 @@ export const PageNavigation: React.FC = async () => {
           </React.Fragment>
         ) : (
           <React.Fragment>
+            <li>
+              <Icon name="user" />
+              <span>{displayName}</span>
+            </li>
             <li>
               <form method="POST">
                 <button formAction="/auth/logout">Sign out</button>
