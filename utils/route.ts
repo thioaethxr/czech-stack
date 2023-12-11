@@ -7,4 +7,5 @@ export enum AppRoute {
   REGISTER = '/register',
   ABOUT = '/about',
   LEARNING = '/learning',
+  MATEIRALS = '/materials',
 }

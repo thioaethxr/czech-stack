@@ -24,6 +24,9 @@ export const PageNavigation: React.FC = async () => {
         <li>
           <Link href={AppRoute.LEARNING}>Learning</Link>
         </li>
+        <li>
+          <Link href={AppRoute.MATEIRALS}>Materials</Link>
+        </li>
         {!isLoggedIn ? (
           <React.Fragment>
             <li>
