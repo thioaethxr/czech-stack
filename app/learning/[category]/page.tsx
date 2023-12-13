@@ -10,9 +10,9 @@ import { AppRoute } from '@utils/route';
 export default async function LearningCategory({
   params,
 }: {
-  params: { slug: string };
+  params: { category: string };
 }) {
-  const category = await fetchCategory(params.slug);
+  const category = await fetchCategory(params.category);
   const tutorials = await fetchTutorials(category?.id || -1);
 
   return (
@@ -26,7 +26,11 @@ export default async function LearningCategory({
               <p>{tutorial.description}</p>
               <p>Created on: {formatDateString(tutorial.date_created)}</p>
               <p>Author: {tutorial.author.email}</p>
-              <Link href={`${AppRoute.LEARNING}/${params.slug}`}>Link</Link>
+              <Link
+                href={`${AppRoute.LEARNING}/${params.category}/${tutorial.slug}`}
+              >
+                Link
+              </Link>
             </React.Fragment>
           ))
         : null}
@@ -46,9 +50,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { category: string };
 }) {
-  const category = await fetchCategory(params.slug);
+  const category = await fetchCategory(params.category);
 
   return {
     title: `${category?.name} | Czech Stack`,
