@@ -41,7 +41,9 @@ export const fetchTutorials = async (
  * @param {string} slug - The slug of the tutorial to fetch.
  * @returns {Promise<Tutorial | null>} A promise resolving to the fetched tutorial or null if not found.
  */
-export const fetchTutorial = async (slug: string): Promise<Tutorial | null> => {
+export const fetchTutorialBySlug = async (
+  slug: string
+): Promise<Tutorial | null> => {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || '',
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''

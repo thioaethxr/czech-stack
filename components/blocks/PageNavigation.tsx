@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Icon } from '@components/elements/Icon';
 
-import { fetchUser } from '@data/user';
+import { fetchUserById } from '@data/user';
 
 import { getUserSession } from '@utils/supabase';
 import { AppRoute } from '@utils/route';
@@ -12,7 +12,7 @@ export const PageNavigation: React.FC = async () => {
   const { data: sessionData } = await getUserSession();
   const isLoggedIn = !!sessionData;
   const userInfo = isLoggedIn
-    ? await fetchUser(sessionData.session?.user.id || '')
+    ? await fetchUserById(sessionData.session?.user.id || '')
     : null;
 
   return (
@@ -44,7 +44,11 @@ export const PageNavigation: React.FC = async () => {
           <React.Fragment>
             <li>
               <Icon name="user" />
-              <span>{userInfo?.display_name}</span>
+              <Link
+                href={`${AppRoute.PROFILE}/${userInfo?.display_name || ''}`}
+              >
+                {userInfo?.display_name}
+              </Link>
             </li>
             <li>
               <form method="POST">

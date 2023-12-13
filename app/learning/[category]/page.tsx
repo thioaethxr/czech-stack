@@ -1,18 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { fetchCategories, fetchCategory } from '@data/category';
+import { fetchCategories, fetchCategoryBySlug } from '@data/category';
 import { fetchTutorials } from '@data/tutorial';
 
+import { regenerateTimes } from '@utils/constants';
 import { formatDateString } from '@utils/date';
 import { AppRoute } from '@utils/route';
+
+export const revalidate = regenerateTimes.tutorialListing;
 
 export default async function LearningCategory({
   params,
 }: {
   params: { category: string };
 }) {
-  const category = await fetchCategory(params.category);
+  const category = await fetchCategoryBySlug(params.category);
   const tutorials = await fetchTutorials(category?.id || -1);
 
   return (
@@ -52,7 +55,7 @@ export async function generateMetadata({
 }: {
   params: { category: string };
 }) {
-  const category = await fetchCategory(params.category);
+  const category = await fetchCategoryBySlug(params.category);
 
   return {
     title: `${category?.name} | Czech Stack`,

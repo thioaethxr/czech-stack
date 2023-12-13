@@ -1,14 +1,18 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 
-import { fetchTutorials, fetchTutorial } from '@data/tutorial';
+import { fetchTutorials, fetchTutorialBySlug } from '@data/tutorial';
+
+import { regenerateTimes } from '@utils/constants';
+
+export const revalidate = regenerateTimes.tutorial;
 
 export default async function Tutorial({
   params,
 }: {
   params: { slug: string };
 }) {
-  const tutorial = await fetchTutorial(params.slug || '');
+  const tutorial = await fetchTutorialBySlug(params.slug || '');
 
   return (
     <React.Fragment>
@@ -32,7 +36,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const tutorial = await fetchTutorial(params.slug);
+  const tutorial = await fetchTutorialBySlug(params.slug);
 
   return {
     title: `${tutorial?.name} | Czech Stack`,

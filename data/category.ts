@@ -25,7 +25,9 @@ export const fetchCategories = async (): Promise<Category[]> => {
  * @param {string} slug - The slug of the category to fetch.
  * @returns {Promise<Category | null>} A promise resolving to the fetched category or null if not found.
  */
-export const fetchCategory = async (slug: string): Promise<Category | null> => {
+export const fetchCategoryBySlug = async (
+  slug: string
+): Promise<Category | null> => {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || '',
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''

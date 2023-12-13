@@ -3,11 +3,12 @@ import Link from 'next/link';
 
 import { fetchCategories } from '@data/category';
 
+import { regenerateTimes } from '@utils/constants';
 import { AppRoute } from '@utils/route';
 
 import type { Metadata } from 'next';
 
-export const revalidate = 3600;
+export const revalidate = regenerateTimes.category;
 
 export const metadata: Metadata = {
   title: 'Learning | Czech Stack',

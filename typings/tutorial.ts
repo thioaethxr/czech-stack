@@ -13,5 +13,5 @@ export interface Tutorial {
   content: string;
   author_id: number | null;
   category_id: Category['id'] | null;
-  author?: UserInfo;
+  author: UserInfo | null;
 }

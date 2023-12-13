@@ -8,4 +8,5 @@ export enum AppRoute {
   ABOUT = '/about',
   LEARNING = '/learning',
   MATEIRALS = '/materials',
+  PROFILE = '/profile',
 }
