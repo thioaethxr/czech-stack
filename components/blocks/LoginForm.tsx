@@ -17,11 +17,19 @@ export const LoginForm: React.FC = () => {
   const [submitDisabled, setSubmitDisabled] = useState<boolean>(false);
 
   const handleLogin = async (authInfo: AuthInfo) => {
-    await supabase.auth.signInWithPassword({
-      email: authInfo.email,
-      password: authInfo.password,
-    });
-    router.refresh();
+    try {
+      const res = await supabase.auth.signInWithPassword({
+        email: authInfo.email,
+        password: authInfo.password,
+      });
+      if (res.error) {
+        throw res.error;
+      }
+      router.refresh();
+    } catch (err) {
+      console.error(err);
+      alert('Login failed!');
+    }
   };
 
   const handleSubmit = async (e: FormEvent) => {

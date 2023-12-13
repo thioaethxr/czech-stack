@@ -3,13 +3,17 @@ import Link from 'next/link';
 
 import { Icon } from '@components/elements/Icon';
 
+import { fetchUser } from '@data/user';
+
 import { getUserSession } from '@utils/supabase';
 import { AppRoute } from '@utils/route';
 
 export const PageNavigation: React.FC = async () => {
-  const { data } = await getUserSession();
-  const displayName = data.session?.user.email?.split('@')[0] || '';
-  const isLoggedIn = !!data.session;
+  const { data: sessionData } = await getUserSession();
+  const isLoggedIn = !!sessionData;
+  const userInfo = isLoggedIn
+    ? await fetchUser(sessionData.session?.user.id || '')
+    : null;
 
   return (
     <nav>
@@ -40,7 +44,7 @@ export const PageNavigation: React.FC = async () => {
           <React.Fragment>
             <li>
               <Icon name="user" />
-              <span>{displayName}</span>
+              <span>{userInfo?.display_name}</span>
             </li>
             <li>
               <form method="POST">

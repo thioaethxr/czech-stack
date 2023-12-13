@@ -1,4 +1,5 @@
 import type { Category } from './category';
+import type { UserInfo } from '@typings/user';
 
 /**
  * Represents a tutorial with its properties.
@@ -12,7 +13,5 @@ export interface Tutorial {
   content: string;
   author_id: number | null;
   category_id: Category['id'] | null;
-  author: {
-    email: string;
-  };
+  author?: UserInfo;
 }

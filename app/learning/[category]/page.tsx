@@ -25,7 +25,7 @@ export default async function LearningCategory({
               <h3>{tutorial.name}</h3>
               <p>{tutorial.description}</p>
               <p>Created on: {formatDateString(tutorial.date_created)}</p>
-              <p>Author: {tutorial.author.email}</p>
+              <p>Author: {tutorial.author?.display_name || 'N/A'}</p>
               <Link
                 href={`${AppRoute.LEARNING}/${params.category}/${tutorial.slug}`}
               >

@@ -1,4 +1,5 @@
 import React from 'react';
+import Markdown from 'react-markdown';
 
 import { fetchTutorials, fetchTutorial } from '@data/tutorial';
 
@@ -12,6 +13,7 @@ export default async function Tutorial({
   return (
     <React.Fragment>
       <h1>{tutorial?.name}</h1>
+      <Markdown>{tutorial?.content}</Markdown>
     </React.Fragment>
   );
 }
