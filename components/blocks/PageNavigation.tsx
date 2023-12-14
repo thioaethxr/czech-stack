@@ -17,36 +17,52 @@ export const PageNavigation: React.FC = async () => {
     : null;
 
   return (
-    <nav>
+    <nav className="page-navigation">
       <ContentWrapper>
-        <h2>Page Navigation</h2>
-        <ul>
-          <li>
-            <Link href={AppRoute.HOME}>Home</Link>
+        <div className="page-navigation__logo" />
+        <ul className="page-navigation__items">
+          <li className="page-navigation__item">
+            <Link className="page-navigation__link" href={AppRoute.HOME}>
+              Home
+            </Link>
           </li>
-          <li>
-            <Link href={AppRoute.ABOUT}>About</Link>
+          <li className="page-navigation__item">
+            <Link className="page-navigation__link" href={AppRoute.ABOUT}>
+              About
+            </Link>
           </li>
-          <li>
-            <Link href={AppRoute.LEARNING}>Learning</Link>
+          <li className="page-navigation__item">
+            <Link className="page-navigation__link" href={AppRoute.LEARNING}>
+              Learning
+            </Link>
           </li>
-          <li>
-            <Link href={AppRoute.MATEIRALS}>Materials</Link>
+          <li className="page-navigation__item">
+            <Link className="page-navigation__link" href={AppRoute.MATEIRALS}>
+              Materials
+            </Link>
           </li>
           {!isLoggedIn ? (
             <React.Fragment>
-              <li>
-                <Link href={AppRoute.LOGIN}>Sign in</Link>
+              <li className="page-navigation__item">
+                <Link className="page-navigation__link" href={AppRoute.LOGIN}>
+                  Sign in
+                </Link>
               </li>
-              <li>
-                <Link href={AppRoute.REGISTER}>Sign up</Link>
+              <li className="page-navigation__item">
+                <Link
+                  className="page-navigation__link"
+                  href={AppRoute.REGISTER}
+                >
+                  Sign up
+                </Link>
               </li>
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <li>
+              <li className="page-navigation__profile">
                 <Icon name="user" />
                 <Link
+                  className="page-navigation__link"
                   href={`${AppRoute.PROFILE}/${userInfo?.display_name || ''}`}
                 >
                   {userInfo?.display_name}
