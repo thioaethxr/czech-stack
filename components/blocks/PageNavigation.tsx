@@ -10,7 +10,7 @@ import { AppRoute } from '@utils/route';
 
 export const PageNavigation: React.FC = async () => {
   const { data: sessionData } = await getUserSession();
-  const isLoggedIn = !!sessionData;
+  const isLoggedIn = !!sessionData.session;
   const userInfo = isLoggedIn
     ? await fetchUserById(sessionData.session?.user.id || '')
     : null;

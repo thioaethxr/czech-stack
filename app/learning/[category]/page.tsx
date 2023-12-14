@@ -9,6 +9,7 @@ import { formatDateString } from '@utils/date';
 import { AppRoute } from '@utils/route';
 
 export const revalidate = regenerateTimes.tutorialListing;
+export const dynamic = 'force-dynamic';
 
 export default async function LearningCategory({
   params,

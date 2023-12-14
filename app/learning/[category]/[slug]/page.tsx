@@ -6,6 +6,7 @@ import { fetchTutorials, fetchTutorialBySlug } from '@data/tutorial';
 import { regenerateTimes } from '@utils/constants';
 
 export const revalidate = regenerateTimes.tutorial;
+export const dynamic = 'force-dynamic';
 
 export default async function Tutorial({
   params,
