@@ -1,3 +1,5 @@
+@import 'breakpoint';
+
 body {
   display: flex;
   flex-direction: column;
@@ -7,9 +9,13 @@ body {
 
 .czs-content-wrapper {
   margin: 0 auto;
-  padding: 0 2.4rem;
+  padding: 0 1.6rem;
   width: 100%;
   max-width: 144rem;
+
+  @include sm {
+    padding: 0 2.4rem;
+  }
 }
 
 .page-footer {

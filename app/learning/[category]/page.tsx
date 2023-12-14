@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 import { fetchCategories, fetchCategoryBySlug } from '@data/category';
 import { fetchTutorials } from '@data/tutorial';
@@ -30,11 +29,11 @@ export default async function LearningCategory({
               <p>{tutorial.description}</p>
               <p>Created on: {formatDateString(tutorial.date_created)}</p>
               <p>Author: {tutorial.author?.display_name || 'N/A'}</p>
-              <Link
+              <a
                 href={`${AppRoute.LEARNING}/${params.category}/${tutorial.slug}`}
               >
                 Link
-              </Link>
+              </a>
             </React.Fragment>
           ))
         : null}

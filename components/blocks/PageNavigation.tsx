@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 import { ContentWrapper } from '@components/elements/ContentWrapper';
 import { Icon } from '@components/elements/Icon';
@@ -19,60 +18,59 @@ export const PageNavigation: React.FC = async () => {
   return (
     <nav className="page-navigation">
       <ContentWrapper>
-        <div className="page-navigation__logo" />
+        <a href={AppRoute.HOME} className="page-navigation__logo" />
+        <input type="checkbox" id="nav-toggle" />
+        <label className="page-navigation__hider" htmlFor="nav-toggle">
+          <Icon name="bars" />
+        </label>
         <ul className="page-navigation__items">
           <li className="page-navigation__item">
-            <Link className="page-navigation__link" href={AppRoute.HOME}>
+            <a className="page-navigation__link" href={AppRoute.HOME}>
               Home
-            </Link>
+            </a>
           </li>
           <li className="page-navigation__item">
-            <Link className="page-navigation__link" href={AppRoute.ABOUT}>
+            <a className="page-navigation__link" href={AppRoute.ABOUT}>
               About
-            </Link>
+            </a>
           </li>
           <li className="page-navigation__item">
-            <Link className="page-navigation__link" href={AppRoute.LEARNING}>
+            <a className="page-navigation__link" href={AppRoute.LEARNING}>
               Learning
-            </Link>
+            </a>
           </li>
           <li className="page-navigation__item">
-            <Link className="page-navigation__link" href={AppRoute.MATEIRALS}>
+            <a className="page-navigation__link" href={AppRoute.MATEIRALS}>
               Materials
-            </Link>
+            </a>
           </li>
           {!isLoggedIn ? (
             <React.Fragment>
               <li className="page-navigation__item">
-                <Link className="page-navigation__link" href={AppRoute.LOGIN}>
+                <a className="page-navigation__link" href={AppRoute.LOGIN}>
                   Sign in
-                </Link>
+                </a>
               </li>
               <li className="page-navigation__item">
-                <Link
-                  className="page-navigation__link"
-                  href={AppRoute.REGISTER}
-                >
+                <a className="page-navigation__link" href={AppRoute.REGISTER}>
                   Sign up
-                </Link>
+                </a>
               </li>
             </React.Fragment>
           ) : (
             <React.Fragment>
               <li className="page-navigation__profile">
-                <Icon name="user" />
-                <Link
+                <a
                   className="page-navigation__link"
                   href={`${AppRoute.PROFILE}/${userInfo?.display_name || ''}`}
                 >
-                  {userInfo?.display_name}
-                </Link>
+                  <Icon name="user" />
+                  <span>{userInfo?.display_name}</span>
+                </a>
               </li>
-              <li>
-                <form method="POST">
-                  <button formAction="/auth/logout">Sign out</button>
-                </form>
-              </li>
+              <form method="POST" className="page-navigation__auth-form">
+                <button formAction="/auth/logout">Sign out</button>
+              </form>
             </React.Fragment>
           )}
         </ul>

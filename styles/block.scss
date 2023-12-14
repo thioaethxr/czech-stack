@@ -2,7 +2,8 @@
 @import 'color';
 
 .page-navigation {
-  padding: 1.6rem 0;
+  position: relative;
+  padding: 1.2rem 0;
   background-color: $box-background;
   border-bottom: 1px solid $box-border;
 
@@ -18,27 +19,94 @@
     background-color: #313131;
   }
 
-  &__items {
-    display: flex;
-    align-items: center;
-    gap: 2.4rem;
-    margin-left: auto;
-    font-size: 1.4rem;
+  #nav-toggle {
+    display: none;
   }
 
+  &__hider {
+    margin-left: auto;
+    font-size: 2rem;
+    cursor: pointer;
+
+    @include sm {
+      display: none;
+    }
+  }
+
+  &__items {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    width: 100%;
+    font-size: 1.4rem;
+
+    @include sm {
+      position: unset;
+      top: unset;
+      left: unset;
+      display: flex;
+      flex-direction: row;
+      gap: 2.4rem;
+      width: max-content;
+    }
+  }
+
+  #nav-toggle:checked + label + &__items {
+    display: flex;
+  } 
+
   &__item {
+    width: 100%;
+    background-color: $box-background;
+    border-bottom: 1px solid $box-border;
+
+    &:first-child {
+      border-top: 1px solid $box-border;
+    }
+
+    @include sm {
+      width: max-content;
+      background-color: unset;
+      border-top: unset !important;
+      border-bottom: unset !important;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 1.6rem;
     opacity: 0.8;
-    transition: opacity 0.2s;
+    transition: opacity 0.2s;  
 
     &:hover {
       opacity: 1;
     }
+
+    @include sm {
+      padding: unset;
+    }
   }
 
   &__profile {
+    width: 100%;
+
+    @include sm {
+      width: max-content;
+    }
+  }
+
+  &__profile a {
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    padding: 1.6rem;
+    width: 100%;
+    background-color: $box-background;
+    border-bottom: 1px solid $box-border;
     opacity: 0.8;
     transition: opacity 0.2s;
 
@@ -48,6 +116,27 @@
 
     .czs-icon {
       font-size: 1em;
+    }
+
+    @include sm {
+      padding: 0;
+      width: max-content;
+      background-color: unset;
+      border-bottom: unset;
+    }
+  }
+
+  &__auth-form {
+    padding: 1.6rem;
+    width: 100%;
+    background-color: $box-background;
+    border-bottom: 1px solid $box-border;
+
+    @include sm {
+      padding: unset;
+      width: max-content;
+      background-color: unset;
+      border-bottom: unset;
     }
   }
 }
