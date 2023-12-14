@@ -1,4 +1,5 @@
 @import 'breakpoint';
+@import 'color';
 
 html {
   font-size: 56.25%;
@@ -11,5 +12,7 @@ html {
 }
 
 body {
+  background-color: $background-color;
+  color: $foreground-color;
   font-size: 1.5rem;
 }

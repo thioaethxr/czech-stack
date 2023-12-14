@@ -1,0 +1,51 @@
+@import 'color';
+
+.page-footer {
+  padding: 0.6rem 0;
+  background-color: $box-background;
+  font-size: 1.2rem;
+  border-top: 1px solid $box-border;
+
+  &__content {
+    .czs-content-wrapper {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__copyright {
+    margin-right: 1.2rem;
+  }
+
+  &__license {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    .czs-icon {
+      font-size: 1rem;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.2rem;
+    margin-left: auto;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      .czs-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+}

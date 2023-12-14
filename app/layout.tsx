@@ -11,9 +11,9 @@ import type { Metadata } from 'next';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import '@styles/reset.scss';
-import '@styles/breakpoint.scss';
 import '@styles/main.scss';
 import '@styles/layout.scss';
+import '@styles/block.scss';
 
 export const metadata: Metadata = {
   title: 'Czech Stack',
