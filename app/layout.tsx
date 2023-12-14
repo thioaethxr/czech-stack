@@ -3,6 +3,8 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import { PageNavigation } from '@components/blocks/PageNavigation';
 import { PageFooter } from '@components/blocks/PageFooter';
 
+import { openSans } from '@utils/font';
+
 import type { Metadata } from 'next';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -25,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="cs">
-      <body>
+      <body className={openSans.className}>
         <PageNavigation />
         {children}
         <PageFooter />
